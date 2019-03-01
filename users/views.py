@@ -32,9 +32,9 @@ class SignUp(generic.CreateView):
     template_name = 'registration/signup.html'
 
 
-    def get_success_url(self, form):
-        username = form.username
-        password = form.password
+    def get_success_url(self, user_data):
+        username = user_data[0]
+        password = user_data[1]
         user = authenticate(self.request, username=username, password=password)
         if user is not None:
             login(self.request, user)
@@ -44,5 +44,6 @@ class SignUp(generic.CreateView):
         return reverse('repair:home')
 
     def form_valid(self, form):
-        form = form.save()
-        return HttpResponseRedirect(self.get_success_url(form))
+        user_data = (form['username'].value(), form['password1'].value())
+        form.save()
+        return HttpResponseRedirect(self.get_success_url(user_data))
