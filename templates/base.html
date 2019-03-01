@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+
+	<!-- Basic Page Needs
+	================================================== -->
+	<meta charset="utf-8">
+    <title>Choose the Type of iPhone </title>
+    <meta name="description" content="">	
+	<meta name="author" content="">
+
+	<!-- Mobile Specific Metas
+	================================================== -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<!-- Favicons
+	================================================== -->
+	<link rel="icon" href="{% static 'images/icons/favicon-32x32.png' %}" type="../image/x-icon" />
+	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="{% static 'images/icons/favicon-144x144.png' %}">
+	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/favicon/favicon-72x72.html">
+	<link rel="apple-touch-icon-precomposed" href="images/favicon/favicon-54x54.html">
+
+	
+	<!-- CSS
+	================================================== -->
+	
+	<!-- Bootstrap -->
+	<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+	<!-- Template styles-->
+	<link rel="stylesheet" href="{% static 'css/style.css' %}">
+	<!-- Responsive styles-->
+	<link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+	<!-- FontAwesome -->
+	<link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+	<!-- Animation -->
+	<link rel="stylesheet" href="{% static 'css/animate.css' %}">
+	<!-- Prettyphoto -->
+	<link rel="stylesheet" href="{% static 'css/prettyPhoto.css' %}">
+	<!-- Owl Carousel -->
+	<link rel="stylesheet" href="{% static 'css/owl.carousel.css' %}">
+	<link rel="stylesheet" href="{% static 'css/owl.theme.css' %}">
+	<!-- Flexslider -->
+	<link rel="stylesheet" href="{% static 'css/flexslider.css' %}">
+	<!-- Flexslider -->
+	<link rel="stylesheet" href="{% static 'css/cd-hero.css' %}">
+	<!-- Style Swicther -->
+	<link id="style-switch" href="{% static 'css/presets/preset3.css' %}" media="screen" rel="stylesheet" type="text/css">
+
+	<!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
+    <!--[if lt IE 9]>
+      <script src="{% static 'js/html5shiv.js' %}"></script
+      <script src="{% static 'js/respond.min.js' %}"></script>
+    <![endif]-->
+
+</head>
+	
+<body>
+	<div class="body-inner">
+
+    <!-- Navbar & header start-->
+		<!-- Header start -->
+	<header id="header" class="navbar-fixed-top" role="banner">
+		<div class="container">
+			<div class="row">
+				<div class="header3">
+				<!-- Logo start -->
+                <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <div class="navbar-brand">
+                    <a href="http://www.digicompute.com/index.php">
+                        <img class="img-responsive" src="{% static 'images/logo2.png' %}" alt="logo">
+                    </a> 
+                </div>                   
+                </div>            	
+                <!--/ Logo end -->
+				<nav class="collapse navbar-collapse clearfix" role="navigation">
+					<ul class="nav navbar-nav navbar-right">
+						<li><a href="http://www.digicompute.com/index.php">Home</a></li>
+						<li class="dropdown">
+                       		<a href="#" class="dropdown-toggle" data-toggle="dropdown">Services <i class="fa fa-angle-down"></i></a>
+                       		<div class="dropdown-menu">
+								<ul>
+		                           	<li><a href="http://www.digicompute.com/services/cellphone-repair.php">Cellphone Repair</a></li>
+		                           	<li><a href="http://www.digicompute.com/services/computer-repair.php">Computer Repair</a></li>
+		                           	<li><a href="http://www.digicompute.com/services/network-services.php">Networking</a></li>
+		                           	<li><a href="http://www.digicompute.com/services/telecommunication-services.php">Telecommunication</a></li>
+                                    <li><a href="http://www.digicompute.com/services/webdesign-services.php">Web Design</a></li>
+                                    <li><a href="http://www.digicompute.com/services/cctv-services.php">CCTV</a></li>
+                                    <!--<li><a href="http://www.digicompute.com/services/phone-system.php">Phone Systems</a></li>
+                                    <li><a href="http://www.digicompute.com/services/graphic-services.php">Design & Print</a></li> -->
+		                        </ul>
+	                    	</div>
+	                    </li>
+	                    <li class="dropdown">
+                       		<a href="#" class="dropdown-toggle" data-toggle="dropdown">Company<i class="fa fa-angle-down"></i></a>
+                       		<div class="dropdown-menu">
+								<ul>
+		                           	<li><a href="http://www.digicompute.com/team.php">Our Team</a></li>
+		                           	<li><a href="http://www.digicompute.com/services.php">Services</a></li>
+		                           	<li><a href="http://www.digicompute.com/career.php">Career</a></li>
+		                           	<li><a href="http://www.digicompute.com/testimonials.php">Testimonials</a></li>
+		                           	
+		                        </ul>
+	                    	</div>
+	                    </li>
+
+						<li class="dropdown">
+                       		<a href="#" class="dropdown-toggle" data-toggle="dropdown">Portfolio <i class="fa fa-angle-down"></i></a>
+                       		<div class="dropdown-menu">
+								<ul>
+		                            <li><a href="http://www.digicompute.com/portfolio-static.php">Portfolio</a></li>
+		                            
+		                        </ul>
+	                    	</div>
+	                    </li>
+{#	                  <li class="dropdown">#}
+{#                       		<a href="#" class="dropdown-toggle" data-toggle="dropdown">Blog <i class="fa fa-angle-down"></i></a>#}
+{#                       		<div class="dropdown-menu">#}
+{#								<ul>#}
+{#		                           	 <li><a href="http://www.digicompute.com/blog-rightside.php">Blog with Sidebar</a></li>#}
+{#	                            	<li><a href="http://www.digicompute.com/blog-item.php">Blog Single</a></li>#}
+{#		                        </ul>#}
+{#	                    	</div>#}
+{#	                    </li>#}
+	                   <!-- <li class="dropdown">
+                       		<a href="#" class="dropdown-toggle" data-toggle="dropdown">Features <i class="fa fa-angle-down"></i></a>
+                       		<div class="dropdown-menu">
+								<ul>
+		                           	 <li><a href="typography.html">Typography</a></li>
+	                            	<li><a href="elements.html">Elements</a></li>
+		                        </ul>
+	                    	</div>
+	                    </li>-->
+            			<li><a href="http://www.digicompute.com/contact.php">Contact</a></li>
+                        {% if request.user.is_authenticated %}
+            			    <li><a href="{% url 'logout' %}">Logout</a></li>
+                        {% else %}
+            			    <li><a href="{% url 'login' %}">Login</a></li>
+            			    <li><a href="{% url 'signup' %}">Register</a></li>
+                        {% endif %}
+                    </ul>
+				</nav><!--/ Navigation end -->
+
+				</div><!--/ header 3 end -->
+			</div><!--/ Row end -->
+		</div><!--/ Container end -->
+	</header><!--/ Header end -->
+    
+   	<!-- Navbar & header end -->
+
+
+
+	<!-- Main container start -->
+
+	<section id="main-container">
+	
+    <div class="container">        	
+
+        {% block content %}
+
+        {% endblock %}
+                
+    </div><!--/ Content row end -->
+
+
+	</section><!--/ Main container end -->
+	
+	
+
+	<!-- Footer start -->
+	
+		<section id="footer" class="footer footer-map">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 text-center">
+					<div class="footer-logo">
+						<img src="{% static 'images/logo.png' %}" alt="logo">
+					</div>
+					<div class="gap-20"></div>
+					<ul class="dark unstyled">
+						<li>
+							<a title="Twitter" href="#">
+								<span class="icon-pentagon wow bounceIn"><i class="fa fa-twitter"></i></span>
+							</a>
+							<a title="Facebook" href="#">
+								<span class="icon-pentagon wow bounceIn"><i class="fa fa-facebook"></i></span>
+							</a>
+							<a title="Google+" href="#">
+								<span class="icon-pentagon wow bounceIn"><i class="fa fa-google-plus"></i></span>
+							</a>
+							<a title="linkedin" href="#">
+								<span class="icon-pentagon wow bounceIn"><i class="fa fa-linkedin"></i></span>
+							</a>
+							<a title="Pinterest" href="#">
+								<span class="icon-pentagon wow bounceIn"><i class="fa fa-pinterest"></i></span>
+							</a>
+							<a title="Skype" href="#">
+								<span class="icon-pentagon wow bounceIn"><i class="fa fa-skype"></i></span>
+							</a>
+							<a title="Dribble" href="#">
+								<span class="icon-pentagon wow bounceIn"><i class="fa fa-dribbble"></i></span>
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div><!--/ Row end -->
+			<div class="row">
+				<div class="col-md-12 text-center">
+					<div class="copyright-info">
+         			&copy; 2008 - 2019 - Digicompute by <a href="http://www.digicompute.com/"></a>. All rights reserved.</span>
+        			</div>
+				</div>
+			</div><!--/ Row end -->
+		   <div id="back-to-top" data-spy="affix" data-offset-top="10" class="back-to-top affix">
+				<button class="btn btn-primary" title="Back to Top"><i class="fa fa-angle-double-up"></i></button>
+			</div>
+		</div><!--/ Container end -->
+	</section><!--/ Footer end -->	<!-- Footer end -->
+
+	<!-- Javascript Files
+	================================================== -->
+
+	<!-- initialize jQuery Library -->
+	<script type="text/javascript" src="{% static 'js//jquery.js' %}"></script>
+	<!-- Bootstrap jQuery -->
+	<script type="text/javascript" src="{% static 'js//bootstrap.min.js' %}"></script>
+	<!-- Style Switcher -->
+	<script type="text/javascript" src="{% static 'js//style-switcher.js' %}"></script>
+	<!-- Owl Carousel -->
+	<script type="text/javascript" src="{% static 'js//owl.carousel.js' %}"></script>
+	<!-- PrettyPhoto -->
+	<script type="text/javascript" src="{% static 'js//jquery.prettyPhoto.js' %}"></script>
+	<!-- Bxslider -->
+	<script type="text/javascript" src="{% static 'js//jquery.flexslider.js' %}"></script>
+	<!-- CD Hero slider -->
+	<script type="text/javascript" src="{% static 'js//cd-hero.js' %}"></script>
+	<!-- Isotope -->
+	<script type="text/javascript" src="{% static 'js//isotope.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js//ini.isotope.js' %}"></script>
+	<!-- Wow Animation -->
+	<script type="text/javascript" src="{% static 'js//wow.min.js' %}"></script>
+	<!-- SmoothScroll -->
+	<script type="text/javascript" src="{% static 'js//smoothscroll.js' %}"></script>
+	<!-- Eeasing -->
+	<script type="text/javascript" src="{% static 'js//jquery.easing.1.3.js' %}"></script>
+	<!-- Counter -->
+	<script type="text/javascript" src="{% static 'js//jquery.counterup.min.js' %}"></script>
+	<!-- Waypoints -->
+	<script type="text/javascript" src="{% static 'js//waypoints.min.js' %}"></script>
+	<!-- Google Map API Key Source -->
+	<script src="http://maps.google.com/maps/api/js?sensor=false"></script>
+	<!-- For Google Map -->
+	<script type="text/javascript" src="{% static 'js//gmap3.js' %}"></script>
+	<!-- Doc http://www.mkyong.com/google-maps/google-maps-api-hello-world-example/ -->
+	<!-- Template custom -->
+	<script type="text/javascript" src="{% static 'js//custom.js' %}"></script>
+	</div><!-- Body inner end -->
+</body>
+
+</html>

@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+
+	<!-- Features start -->
+	<section id="feature-center" class="feature-center">
+		<div class="container">
+        
+        
+        <!-- Iphone x start here -->
+        
+            <div class="row">
+
+{#                {% for problem in object.repaircharge_set.all %}#}
+{#                <div class="col-md-3 col-sm-3 wow fadeInDown" data-wow-delay=".4s">#}
+{#				  <div class="plan text-center featured">#}
+{#                    <div class="gap-20"></div>#}
+{#                    #}
+{#					<div class="feature-center-content text-center">#}
+{#					<span class="feature-center-icon"><a href="iphone-8plus-screen-repair.html"><img src="{{ problem.phone.image.url }}" width="128" height="128" alt="Computer Icon" longdesc="images/icons/computer_icon.html"></a></span>#}
+{#					  <h3>{{ problem.phone.name }} hello </h3>#}
+{#					  <h3>{{ problem.problem_type.name }}</h3>#}
+{#                      <p class="plan-price"><sup class="currency">$</sup><strong>{{ problem.charge }}</strong><sub></sub></p>#}
+{#					</div>#}
+{#				      <a class="btn btn-primary" href="#.">Schedule</a>#}
+{#						<!--<p>LCD Replacement, Battery Replacement, Water Damage, Charge Port Repair</p>-->#}
+{#					</div>#}
+{#				</div><!--/ End first features -->#}
+{#                {% endfor %}#}
+
+
+
+                {% for problem in object.problemtype_set.all %}
+                <div class="col-md-3 col-sm-3 wow fadeInDown" data-wow-delay=".4s">
+                    {% if request.user.is_superuser %}
+                        <a href="{% url 'repair:problem_type_edit' pk=problem.pk %}" class="btn btn-success btn-sm">Edit</a>
+                    {% endif %}
+				  <div class="plan text-center featured">
+                    <div class="gap-20"></div>
+
+					<div class="feature-center-content text-center">
+					<span class="feature-center-icon"><a href="iphone-8plus-screen-repair.html"><img src="{{ problem.phone.image.url }}" width="128" height="128" alt="Computer Icon" longdesc="images/icons/computer_icon.html"></a></span>
+					  <h3>{{ problem.phone.name }}</h3>
+					  <h3>{{ problem.name }}</h3>
+                      <p class="plan-price"><sup class="currency">$</sup><strong>{{ problem.repair_charge }}</strong><sub></sub></p>
+					</div>
+				      <a class="btn btn-primary" href="{% url 'repair:schedule' pk=problem.id %}">Schedule</a>
+						<!--<p>LCD Replacement, Battery Replacement, Water Damage, Charge Port Repair</p>-->
+					</div>
+				</div><!--/ End first features -->
+                {% endfor %}
+
+
+			</div><!--/ 1st row end -->
+
+            <div class="gap-40"></div>
+
+            {% if request.user.is_superuser %}
+                <hr>
+                <div class="text-right">
+                    <a href="{% url 'repair:problem_type_create' pk=object.pk %}" class="btn btn-success">Add Problem Type</a>
+                </div>
+            {% endif %}
+
+    </div><!--/ Container end -->
+	</section><!--/ Features end -->
+
+{% endblock %}

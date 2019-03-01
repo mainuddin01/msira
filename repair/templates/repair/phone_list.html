@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+    <!-- Features start -->
+	<section id="feature-center" class="feature-center">
+		<div class="container">
+
+{#        {{ request.session.problem }}#}
+
+			<div class="row">
+                {% for phone in object_list %}
+                    <div class="col-md-3 col-sm-3 wow fadeInDown" data-wow-delay="2.0s">
+                        {% if request.user.is_superuser %}
+                            <a href="{% url 'repair:phone_edit' pk=phone.pk %}" class="btn btn-warning btn-sm">Edit</a>
+                        {% endif %}
+                        <div class="feature-center-content text-center">
+                            {% if phone.image %}
+                                <span class="feature-center-icon"><a href="{{ phone.get_absolute_url }}"><img src="{{ phone.image.url }}" width="128" height="128" alt="{{ phone.name }}" longdesc="images/icons/computer_icon.html"></a></span>
+                            {% else %}
+                                <span class="feature-center-icon"><a href="{{ phone.get_absolute_url }}"><img src="{% static 'images/phones/iphone8plus.png' %}" width="128" height="128" alt="{{ phone.name }}" longdesc="images/icons/computer_icon.html"></a></span>
+                            {% endif %}
+                            <h3>{{ phone.name }}</h3>
+                            <!--<p>LCD Replacement, Battery Replacement, Water Damage, Charge Port Repair</p>-->
+                        </div>
+                    </div><!--/ End first features -->
+                {% endfor %}
+			</div><!--/ 1st row end -->
+
+            <div class="gap-40"></div>
+
+            {% if request.user.is_superuser %}
+                <hr>
+                <a href="{% url 'repair:create' %}" class="btn btn-success">Add Phone</a>
+            {% endif %}
+
+		</div><!--/ Container end -->
+	</section><!--/ Features end -->
+
+{% endblock %}
