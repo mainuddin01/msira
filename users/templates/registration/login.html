@@ -16,11 +16,17 @@
                         <div class="form-group">
                             <label for="{{ form.username.id_for_label }}">{{ form.username.label }}</label>
                             {% render_field form.username class="form-control" %}
+                            {% for error in form.username.errors %}
+                                <span class="help-block">{{ error }}</span>
+                            {% endfor %}
                         </div>
 
                         <div class="form-group">
                             <label for="{{ form.password.id_for_label }}">{{ form.password.label }}</label>
                             {% render_field form.password class="form-control" %}
+                            {% for error in form.password.errors %}
+                                <span class="help-block">{{ error }}</span>
+                            {% endfor %}
                         </div>
 
                 <div class="text-right"><br>
