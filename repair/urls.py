@@ -6,8 +6,8 @@ app_name = 'repair'
 
 urlpatterns = [
     path('', views.PhoneListView.as_view(), name='home'),
-    path('dashboard/phone/list/', views.DashboardPhoneListView.as_view(), name='dashboard_phone_list'),
-    path('phone/create/', views.PhoneCreateView.as_view(), name='create'),
+    path('dashboard/phones/', views.DashboardPhoneListView.as_view(), name='dashboard_phone_list'),
+    path('phone/create/', views.PhoneCreateView.as_view(), name='add_phone'),
     path('phone/<int:pk>/', views.PhoneDetailView.as_view(), name='phone_detail'),
     path('phone/<int:pk>/edit/', views.PhoneUpdateView.as_view(), name='phone_edit'),
     path('phone/<int:pk>/delete/', views.PhoneDeleteView.as_view(), name='phone_delete'),
