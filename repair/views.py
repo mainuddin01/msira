@@ -39,7 +39,10 @@ class PhoneUpdateView(PermissionRequiredMixin, UpdateView):
 class PhoneDeleteView(PermissionRequiredMixin, DeleteView):
     permission_required = "repair.can_delete"
     model = Phone
-    success_url = "repair:home"
+    # success_url = "repair:home"
+
+    def get_success_url(self):
+        return reverse('repair:dashboard_phone_list')
 
 class ProblemTypeCreateView(PermissionRequiredMixin, CreateView):
     permission_required = "repair.can_add"
