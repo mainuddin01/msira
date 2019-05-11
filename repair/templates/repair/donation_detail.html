@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+<div class="row">
+  <div class="col-lg-10 m-auto">
+    <div class="card mt-4">
+      <div class="card-header">
+        <i class="fa fa-align-justify"></i> Donation Details</div>
+      <div class="card-body">
+        <table class="table table-responsive-sm">
+          <tbody>
+            <tr>
+              <td>Donate To:</td>
+              <td>{{ object.donate_to }}</td>
+            </tr>
+            <tr>
+              <td>Donation Type:</td>
+              <td>{{ object.donation_type }}</td>
+            </tr>
+            {% if object.donation_type == 'money' %}
+              <tr>
+                <td>Donated Amount:</td>
+                <td>{{ object.payment }}</td>
+              </tr>
+            {% endif %}
+            <tr>
+              <td>Details:</td>
+              <td>{{ object.details }}</td>
+            </tr>
+            <tr>
+              <td>Donated At:</td>
+              <td>{{ object.timestamp }}</td>
+            </tr>
+            <tr>
+              <td>Status:</td>
+              <td>{{ object.status|title }}</td>
+            </tr>
+            <tr>
+              <td>Mobile Number:</td>
+              <td>{{ object.mobile_number }}</td>
+            </tr>
+            <tr>
+              <td>Donor Details:</td>
+              <td><strong>Full Name:</strong> {{ donor_detail.full_name }},  <strong>Address:</strong> {{ donor_detail.address }}</td>
+            </tr>
+            <tr>
+              {% if perms.cclportal.can_approve_donation or perms.cclportal.can_reject_donation %}
+                {% if object.status != 'approved' and object.status != 'rejected' %}
+                    <td></td>
+                    <td class="text-right">{% if perms.cclportal.can_approve_donation %}<a href="{% url 'cclportal:donation_approve' pk=object.pk %}" class="btn btn-primary mr-2">Approve</a>{% endif %}{% if perms.cclportal.can_reject_donation %}<a href="{% url 'cclportal:donation_reject' pk=object.pk %}" class="btn btn-danger mr-2">Reject</a>{% endif %}{% if perms.cclportal.change_donation %}<a href="{% url 'cclportal:donation_edit' pk=object.pk %}" class="btn btn-warning">Edit</a>{% endif %}</td>
+                {% elif object.status == 'rejected' %}
+                    <td><strong class="text-success">This donation request has already rejected.</strong></td>
+                    <td class="text-right">{% if perms.cclportal.can_approve_donation %}<a href="{% url 'cclportal:donation_approve' pk=object.pk %}" class="btn btn-primary mr-2">Approve</a>{% endif %}{% if perms.cclportal.change_investment %}<a href="{% url 'cclportal:donation_edit' pk=object.pk %}" class="btn btn-warning">Edit</a>{% endif %}</td>
+                {% endif %}
+              {% endif %}
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{% endblock %}

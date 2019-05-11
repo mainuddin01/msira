@@ -55,6 +55,7 @@ class ProblemTypeCreateView(PermissionRequiredMixin, CreateView):
 
 class ProblemTypeListView(ListView):
     model = ProblemType
+    # template_name = "repair/phone_list.html"
 
 class ProblemTypeDetailView(DetailView):
     model = ProblemType

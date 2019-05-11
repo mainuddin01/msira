@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+<div class="row">
+  <div class="col-lg-10 m-auto">
+    <div class="card mt-4">
+      <div class="card-header">
+        <i class="fa fa-align-justify"></i> Application Details</div>
+      <div class="card-body">
+        <table class="table table-responsive-sm">
+          <tbody>
+            <tr>
+              <td>Full Name:</td>
+              <td>{{ object.full_name }}</td>
+            </tr>
+            <tr>
+              <td>Email:</td>
+              <td>{{ object.email }}</td>
+            </tr>
+            <tr>
+              <td>Mobile Number:</td>
+              <td>{{ object.mobile_number }}</td>
+            </tr>
+            <tr>
+              <td>Requested Membership:</td>
+              <td>{{ object.user_type }}</td>
+            </tr>
+            <tr>
+              <td>Reason:</td>
+              <td>{{ object.reason }}</td>
+            </tr>
+            <tr>
+              <td>Status:</td>
+              <td>{{ object.status }}</td>
+            </tr>
+            <tr>
+              <td>Submission Date:</td>
+              <td>{{ object.created_date }}</td>
+            </tr>
+            <tr>
+              <td>Submission Date:</td>
+              <td>{{ object.created_date }}</td>
+            </tr>
+            <tr>
+              <td>User:</td>
+              <td>{{ object.user }}</td>
+            </tr>
+            <tr>
+              {% if perms.cclportal.can_approve_application or perms.cclportal.can_reject_application %}
+                {% if object.status != 'approved' and object.status != 'rejected' %}
+                  {% if object.user_type == object.user.member_type %}
+                      <td><strong class="text-success">{{ object.user.full_name }} is already registered as a {{ object.user.member_type }}.</strong></td>
+                      <td class="text-right">{% if perms.cclportal.can_reject_application %}<a href="{% url 'cclportal:application_reject' pk=application.pk %}" class="btn btn-danger mr-2">Reject</a>{% endif %}{% if perms.cclportal.change_application %}<a href="{% url 'cclportal:application_edit' pk=application.pk %}" class="btn btn-warning">Edit</a>{% endif %}</td>
+                  {% else %}
+                      <td><strong class="text-success">{% if applicant_user %}A user called {{ applicant_user.full_name }} has the same phone number.{% endif %}</strong></td>
+                      <td class="text-right">{% if perms.cclportal.can_approve_application %}<a href="{% url 'cclportal:application_approve' pk=application.pk %}" class="btn btn-primary mr-2">Approve</a>{% endif %}{% if perms.cclportal.can_reject_application %}<a href="{% url 'cclportal:application_reject' pk=application.pk %}" class="btn btn-danger mr-2">Reject</a>{% endif %}{% if perms.cclportal.change_application %}<a href="{% url 'cclportal:application_edit' pk=application.pk %}" class="btn btn-warning">Edit</a>{% endif %}</td>
+                  {% endif %}
+                {% elif object.status == 'rejected' %}
+                      <td><strong class="text-success">This application has already rejected.</strong></td>
+                      <td class="text-right">{% if perms.cclportal.can_approve_application %}<a href="{% url 'cclportal:application_approve' pk=application.pk %}" class="btn btn-primary mr-2">Approve</a>{% endif %}{% if perms.cclportal.change_application %}<a href="{% url 'cclportal:application_edit' pk=application.pk %}" class="btn btn-warning">Edit</a>{% endif %}</td>
+                {% endif %}
+              {% endif %}
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{% endblock %}

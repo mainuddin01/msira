@@ -1,0 +1,121 @@
+{% extends 'base_no_sidebar.html' %}
+
+{% load widget_tweaks %}
+
+{% block content %}
+
+      <div class="row justify-content-center">
+        <div class="col-md-6">
+          <div class="card mx-4">
+            <div class="card-body p-4">
+              <h1 class="pb-4 text-center">Donation</h1>
+            <form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                <div class="input-group mb-3">
+                      {% render_field donator_form.full_name class="form-control w-100" placeholder=donator_form.full_name.label %}
+                        {% for error in donator_form.full_name.errors %}
+                        <div class="text-danger">{{ error }}</div>
+                      {% endfor %}
+              </div>
+
+                <div class="input-group mb-3">
+                      {% render_field donator_form.address class="form-control w-100" placeholder=donator_form.address.label %}
+                        {% for error in donator_form.address.errors %}
+                        <div class="text-danger">{{ error }}</div>
+                      {% endfor %}
+              </div>
+
+                <div class="input-group mb-3">
+                      {% render_field donator_form.image %}
+                        {% for error in donator_form.image.errors %}
+                        <div class="text-danger">{{ error }}</div>
+                      {% endfor %}
+              </div>
+
+                    <div class="input-group mb-3">
+                      {% render_field donation_form.mobile_number class="form-control w-100" placeholder=donation_form.mobile_number.label %}
+                        {% for error in donation_form.mobile_number.errors %}
+                        <div class="text-danger">{{ error }}</div>
+                      {% endfor %}
+              </div>
+                <div class="input-group mb-3">
+                      {% render_field donation_form.donation_type class="form-control w-100" %}
+                      {% for error in donation_form.donation_type.errors %}
+                        <div class="text-danger">{{ error }}</div>
+                      {% endfor %}
+              </div>
+
+
+                <div id="payment-form">
+
+                </div>
+
+
+                <div class="input-group mb-3">
+                      {% render_field donation_form.details class="form-control w-100" placeholder=donation_form.details.label rows="3" %}
+                      {% for error in donation_form.details.errors %}
+                        <div class="text-danger">{{ error }}</div>
+                      {% endfor %}
+              </div>
+                    <button class="btn btn-block btn-success" type="submit">Submit</button>
+            </form>
+            </div>
+          </div>
+        </div>
+      </div>
+{% endblock %}
+
+
+<script>
+    {% block extra_js %}
+
+        var paymentForm = `<div class="input-group mb-3">
+                      {% render_field payment_form.amount class="form-control w-100" placeholder=payment_form.amount.label %}
+                      {% for error in payment_form.payment.errors %}
+                        <div class="text-danger">{{ error }}</div>
+                      {% endfor %}
+                  </div>
+                    <div class="input-group mb-3">
+                          {% render_field payment_form.payment_method class="form-control w-100" placeholder=payment_form.payment_method.label %}
+                          {% for error in payment_form.payment_method.errors %}
+                            <div class="text-danger">{{ error }}</div>
+                          {% endfor %}
+                  </div>
+                    <div class="input-group mb-3 trans-id">
+                          {% render_field payment_form.trans_id class="form-control w-100" placeholder=payment_form.trans_id.label %}
+                          {% for error in payment_form.trans_id.errors %}
+                            <div class="text-danger">{{ error }}</div>
+                          {% endfor %}
+                  </div>`;
+
+        show_hide_payment_form();
+        $('#id_donation_type').change(function () {
+            show_hide_payment_form();
+        });
+
+        show_hide_trans_id()
+        $('#id_payment_method').change(function() {
+            show_hide_trans_id()
+        });
+
+        function show_hide_payment_form() {
+            var donation_type = $('#id_donation_type option:selected').val();
+            if (donation_type === 'money') {
+                $('#payment-form').html(paymentForm);
+            } else {
+                $('#payment-form').html(null);
+            }
+        }
+
+        function show_hide_trans_id() {
+            var method = $('#id_payment_method option:selected').attr('data-trans-id');
+            if (method === 'True') {
+                $('.trans-id').show();
+            } else {
+                $('.trans-id').hide();
+            }
+        }
+
+    {% endblock %}
+</script>
+

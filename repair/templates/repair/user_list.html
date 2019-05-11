@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+
+{% load django_tables2 %}
+
+{% block content %}
+
+{% if filter %}
+    <div class="card mt-4">
+        <div class="card-body">
+            <form action="" method="get" class="form form-inline">
+
+                {% render_field filter.form.full_name__icontains placeholder="Filter full name" class="form-control mr-sm-3" %}
+            {% render_field filter.form.phone_number__icontains placeholder="Phone number" class="form-control mr-sm-3" %}
+                {% render_field filter.form.email__icontains placeholder="Email" class="form-control mr-sm-3" %}
+
+        <input type="submit" class="btn btn-primary" value="Filter">
+    </form>
+        </div>
+    </div>
+{% endif %}
+
+<div class="card">
+    <div class="card-body">
+        {% render_table table %}
+    </div>
+</div>
+
+
+{% endblock %}

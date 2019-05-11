@@ -1,0 +1,127 @@
+
+{% extends 'base.html' %}
+
+{% load widget_tweaks %}
+
+{% block content %}
+
+      <div class="row justify-content-center">
+        <div class="col-md-6">
+          <div class="card mx-4">
+            <div class="card-body p-4">
+              <h1 class="pb-4 text-center">profile</h1>
+            <form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+
+
+                <div class="input-group mb-3">
+                      {% render_field user_form.full_name class="form-control w-100" value=requested_user.full_name placeholder=requested_user.full_name %}
+                        {% for error in user_form.full_name.errors %}
+                        <div class="text-danger">{{ error }}</div>
+                      {% endfor %}
+              </div>
+             <div class="input-group mb-3">
+                      {% render_field user_form.phone_number class="form-control w-100" value=requested_user.phone_number placeholder=requested_user.phone_number %}
+                        {% for error in user_form.phone_number.errors %}
+                        <div class="text-danger">{{ error }}</div>
+                      {% endfor %}
+              </div>
+
+              <div class="input-group mb-3">
+                      {% render_field personal_info_form.birth_date class="form-control w-100" value=person.birth_date placeholder=personal_info_form.birth_date.label %}
+                        {% for error in personal_info_form.birth_date.errors %}
+                        <div class="text-danger">{{ error }}</div>
+                      {% endfor %}
+              </div>
+                <div class="input-group mb-3">
+                      {% render_field personal_info_form.blood_group class="form-control w-100" value=person.blood_group placeholder=personal_info_form.blood_group.label %}
+                        {% for error in forms.blood_group.errors %}
+                        <div class="text-danger">{{ error }}</div>
+                      {% endfor %}
+              </div>
+
+                <div class="input-group mb-3">
+                      {% render_field personal_info_form.occupation class="form-control w-100" value=person.occupation placeholder=personal_info_form.occupation.label %}
+                        {% for error in personal_info_form.occupation.errors %}
+                        <div class="text-danger">{{ error }}</div>
+                      {% endfor %}
+              </div>
+
+            <div class="input-group mb-3">
+                      {% render_field personal_info_form.permanent_address class="form-control w-100" value=person.permanent_address placeholder=personal_info_form.permanent_address.label %}
+                        {% for error in personal_info_form.permanent_address.errors %}
+                        <div class="text-danger">{{ error }}</div>
+                      {% endfor %}
+              </div>
+
+                <div class="input-group mb-3">
+                      {% render_field personal_info_form.profile_image %}
+                        {% for error in personal_info_form.profile_image.errors %}
+                        <div class="text-danger">{{ error }}</div>
+                      {% endfor %}
+              </div>
+
+                    <div class="input-group mb-3">
+                      {% render_field family_info_form.family_member class="form-control w-100" value=family.family_member placeholder=family_info_form.family_member.label %}
+                        {% for error in family_info_form.family_member.errors %}
+                        <div class="text-danger">{{ error }}</div>
+                      {% endfor %}
+              </div>
+
+                    <div class="input-group mb-3">
+                      {% render_field family_info_form.father_name class="form-control w-100" value=family.father_name placeholder=family_info_form.father_name.label %}
+                      {% for error in family_info_form.father_name.errors %}
+                        <div class="text-danger">{{ error }}</div>
+                      {% endfor %}
+              </div>
+                <div class="input-group mb-3">
+                      {% render_field family_info_form.mother_name class="form-control w-100" value=family.mother_name placeholder=family_info_form.mother_name.label %}
+                      {% for error in family_info_form.mother_name.errors %}
+                        <div class="text-danger">{{ error }}</div>
+                      {% endfor %}
+              </div>
+                <div class="input-group mb-3">
+                      {% render_field family_info_form.next_of_kin class="form-control w-100" value=family.next_of_kin placeholder=family_info_form.next_of_kin.label %}
+                      {% for error in family_info_form.next_of_kin.errors %}
+                        <div class="text-danger">{{ error }}</div>
+                      {% endfor %}
+              </div>
+                <div class="input-group mb-3">
+                      {% render_field family_info_form.emergency_mobile_no class="form-control w-100" value=family.emergency_mobile_no placeholder=family_info_form.emergency_mobile_no.label rows="3" %}
+                      {% for error in family_info_form.emergency_mobile_no.errors %}
+                        <div class="text-danger">{{ error }}</div>
+                      {% endfor %}
+              </div>
+                <div class="input-group mb-3">
+                      {% render_field family_info_form.marriage_date class="form-control w-100" value=family.marriage_date placeholder=family_info_form.marriage_date.label rows="3" %}
+                      {% for error in family_info_form.marriage_date.errors %}
+                        <div class="text-danger">{{ error }}</div>
+                      {% endfor %}
+              </div>
+                <div class="input-group mb-3">
+                      {% render_field family_info_form.spouse_name class="form-control w-100" value=family.spouse_name placeholder=family_info_form.spouse_name.label rows="3" %}
+                      {% for error in family_info_form.spouse_name.errors %}
+                        <div class="text-danger">{{ error }}</div>
+                      {% endfor %}
+              </div>
+
+
+                <div class="input-group mb-3">
+                      {% render_field family_info_form.spouse_Occupation class="form-control w-100" value=family.spouse_Occupation placeholder=family_info_form.spouse_Occupation.label rows="3" %}
+                      {% for error in family_info_form.spouse_Occupation.errors %}
+                        <div class="text-danger">{{ error }}</div>
+                      {% endfor %}
+              </div>
+                <div class="input-group mb-3">
+                      {% render_field family_info_form.children_details class="form-control w-100" value=family.children_details placeholder=family_info_form.children_details.label rows="3" %}
+                      {% for error in family_info_form.children_details.errors %}
+                        <div class="text-danger">{{ error }}</div>
+                      {% endfor %}
+              </div>
+                    <button class="btn btn-block btn-warning" type="submit">UPDATE</button>
+            </form>
+            </div>
+          </div>
+        </div>
+      </div>
+{% endblock %}

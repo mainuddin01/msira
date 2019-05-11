@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+  <head>
+    <base href="./">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <meta name="description" content="CCL Portal is the dashboard for Country Club and Library Website">
+    <meta name="author" content="CCL">
+    <meta name="keyword" content="CCL, CCL Portal, Country, Club, Library">
+    <title>CCL Portal</title>
+    <!-- Icons-->
+    <link href="{% static 'vendors/@coreui/icons/css/coreui-icons.min.css' %}" rel="stylesheet">
+    <link href="{% static 'vendors/flag-icon-css/css/flag-icon.min.css' %}" rel="stylesheet">
+    <link href="{% static 'vendors/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet">
+    <link href="{% static 'vendors/simple-line-icons/css/simple-line-icons.css' %}" rel="stylesheet">
+    <!-- Main styles for this application-->
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    <link href="{% static 'vendors/pace-progress/css/pace.min.css' %}" rel="stylesheet">
+    <!-- Global site tag (gtag.js) - Google Analytics-->
+    <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-118965717-3"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+      // Shared ID
+      gtag('config', 'UA-118965717-3');
+      // Bootstrap ID
+      gtag('config', 'UA-118965717-5');
+    </script>
+  </head>
+  <body class="app header-fixed sidebar-fixed aside-menu-fixed sidebar-lg-show">
+    <header class="app-header navbar">
+      <button class="navbar-toggler sidebar-toggler d-lg-none mr-auto" type="button" data-toggle="sidebar-show">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <a class="navbar-brand" href="/">
+        <img class="navbar-brand-full" src="{% static 'img/brand/logo.png' %}" width="89" height="25" alt="CCL logo">
+        <img class="navbar-brand-minimized" src="{% static 'img/brand/logo.png' %}" width="30" height="30" alt="CCL logo">
+      </a>
+      <button class="navbar-toggler sidebar-toggler d-md-down-none" type="button" data-toggle="sidebar-lg-show">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <!--<ul class="nav navbar-nav d-md-down-none">-->
+        <!--<li class="nav-item px-3">-->
+          <!--<a class="nav-link" href="#">Dashboard</a>-->
+        <!--</li>-->
+        <!--<li class="nav-item px-3">-->
+          <!--<a class="nav-link" href="#">Users</a>-->
+        <!--</li>-->
+        <!--<li class="nav-item px-3">-->
+          <!--<a class="nav-link" href="#">Settings</a>-->
+        <!--</li>-->
+      <!--</ul>-->
+      <ul class="nav navbar-nav ml-auto">
+        {% if request.user.is_authenticated %}
+        <li class="nav-item dropdown">
+          <a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+            <img class="img-avatar" src="{% static 'img/avatars/6.jpg' %}" alt="admin@bootstrapmaster.com">
+          </a>
+          <div class="dropdown-menu dropdown-menu-right">
+            <!--<div class="dropdown-header text-center">-->
+              <!--<strong>Account</strong>-->
+            <!--</div>-->
+            <!--<a class="dropdown-item" href="#">-->
+              <!--<i class="fa fa-bell-o"></i> Updates-->
+              <!--<span class="badge badge-info">42</span>-->
+            <!--</a>-->
+            <!--<a class="dropdown-item" href="#">-->
+              <!--<i class="fa fa-envelope-o"></i> Messages-->
+              <!--<span class="badge badge-success">42</span>-->
+            <!--</a>-->
+            <!--<a class="dropdown-item" href="#">-->
+              <!--<i class="fa fa-tasks"></i> Tasks-->
+              <!--<span class="badge badge-danger">42</span>-->
+            <!--</a>-->
+            <!--<a class="dropdown-item" href="#">-->
+              <!--<i class="fa fa-comments"></i> Comments-->
+              <!--<span class="badge badge-warning">42</span>-->
+            <!--</a>-->
+            <!--<div class="dropdown-header text-center">-->
+              <!--<strong>Settings</strong>-->
+            <!--</div>-->
+            <!--<a class="dropdown-item" href="#">-->
+              <!--<i class="fa fa-user"></i> Profile</a>-->
+            <!--<a class="dropdown-item" href="#">-->
+              <!--<i class="fa fa-wrench"></i> Settings</a>-->
+            <!--<a class="dropdown-item" href="#">-->
+              <!--<i class="fa fa-usd"></i> Payments-->
+              <!--<span class="badge badge-secondary">42</span>-->
+            <!--</a>-->
+            <!--<a class="dropdown-item" href="#">-->
+              <!--<i class="fa fa-file"></i> Projects-->
+              <!--<span class="badge badge-primary">42</span>-->
+            <!--</a>-->
+            <!--<div class="dropdown-divider"></div>-->
+            <!--<a class="dropdown-item" href="#">-->
+              <!--<i class="fa fa-shield"></i> Lock Account</a>-->
+            <a class="dropdown-item" href="{% url 'logout' %}">
+              <i class="fa fa-lock"></i> Logout</a>
+          </div>
+        </li>
+        {% else %}
+        <li class="nav-item d-md-down-none">
+          <a class="nav-link" href="{% url 'login' %}">
+            <i class="fa fa-user"></i> Login
+          </a>
+        </li>
+        {% endif %}
+      </ul>
+    </header>
+    <div class="app-body">
+      <div class="sidebar">
+        <nav class="sidebar-nav">
+          <ul class="nav">
+            {% if perms.cclportal.view_application or perms.cclportal.add_application %}
+              <li class="nav-title">Application</li>
+              {% if perms.cclportal.view_application %}
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'cclportal:application_list' %}">
+                    <i class="nav-icon icon-list"></i> Application List</a>
+                </li>
+              {% endif %}
+              {% if perms.cclportal.add_application %}
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'cclportal:application' %}">
+                    <i class="nav-icon icon-pencil"></i> New Application</a>
+                </li>
+              {% endif %}
+            {% endif %}
+            {% if perms.cclportal.view_donation or perms.cclportal.add_donation %}
+              <li class="nav-title">Donations</li>
+              {% if perms.cclportal.view_donation %}
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'cclportal:donation_list' %}">
+                    <i class="nav-icon icon-list"></i> All Donations</a>
+                </li>
+              {% endif %}
+              {% if perms.cclportal.add_donation %}
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'cclportal:new_donation_dash' %}">
+                    <i class="nav-icon icon-pencil"></i> Donate</a>
+                </li>
+              {% endif %}
+            {% endif %}
+            {% if perms.cclportal.view_investment or perms.cclportal.add_donation %}
+              <li class="nav-title">Investments</li>
+              {% if perms.cclportal.view_investment %}
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'cclportal:investment_list' %}">
+                    <i class="nav-icon icon-list"></i> All Investments</a>
+                </li>
+              {% endif %}
+              {% if perms.cclportal.add_investment %}
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'cclportal:new_investment_dash' %}">
+                    <i class="nav-icon icon-pencil"></i> Investment</a>
+                </li>
+              {% endif %}
+            {% endif %}
+          </ul>
+        </nav>
+        <button class="sidebar-minimizer brand-minimizer" type="button"></button>
+      </div>
+      <main class="main">
+        <!-- Breadcrumb-->
+        <!--<ol class="breadcrumb">-->
+          <!--<li class="breadcrumb-item">Home</li>-->
+          <!--<li class="breadcrumb-item">-->
+            <!--<a href="#">Admin</a>-->
+          <!--</li>-->
+          <!--<li class="breadcrumb-item active">Dashboard</li>-->
+           <!--Breadcrumb Menu-->
+          <!--<li class="breadcrumb-menu d-md-down-none">-->
+            <!--<div class="btn-group" role="group" aria-label="Button group">-->
+              <!--<a class="btn" href="#">-->
+                <!--<i class="icon-speech"></i>-->
+              <!--</a>-->
+              <!--<a class="btn" href="../../..">-->
+                <!--<i class="icon-graph"></i>  Dashboard</a>-->
+              <!--<a class="btn" href="#">-->
+                <!--<i class="icon-settings"></i>  Settings</a>-->
+            <!--</div>-->
+          <!--</li>-->
+        <!--</ol>-->
+        <div class="container-fluid">
+          <div class="animated fadeIn">
+
+              {% block content %}
+
+              {% endblock %}
+
+          </div>
+        </div>
+      </main>
+    </div>
+    <footer class="app-footer">
+      <div>
+        <span>© {% now "Y" %}, All Rights Reserved by CCL.</span>
+      </div>
+    </footer>
+    <!-- CoreUI and necessary plugins-->
+    <script src="{% static 'vendors/jquery/js/jquery.min.js' %}"></script>
+    <script src="{% static 'vendors/popper.js/js/popper.min.js' %}"></script>
+    <script src="{% static 'vendors/bootstrap/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'vendors/pace-progress/js/pace.min.js' %}"></script>
+    <script src="{% static 'vendors/perfect-scrollbar/js/perfect-scrollbar.min.js' %}"></script>
+    <script src="{% static 'vendors/@coreui/coreui/js/coreui.min.js' %}"></script>
+
+    <script>
+        {% block extra_js %}{% endblock %}
+    </script>
+  </body>
+</html>
