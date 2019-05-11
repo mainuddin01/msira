@@ -23,6 +23,10 @@ class ProblemType(models.Model):
     description = models.TextField(null=True, blank=True)
     # repair_charge = models.DecimalField(max_digits=10, decimal_places=2)
 
+    def get_absolute_url(self):
+        # return reverse('repair:problem_type_detail', kwargs={'pk':self.pk})
+        return reverse('repair:dashboard_problem_type_list')
+
     def __str__(self):
         return self.name
 

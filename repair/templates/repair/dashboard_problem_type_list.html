@@ -1,0 +1,59 @@
+{% extends 'admin_base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+    <div class="card mt-4">
+        <div class="card-body">
+
+
+            <table id="example" class="table table-striped table-bordered" style="width:100%">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for problem in object_list %}
+            <tr>
+                <td>{{ problem.id }}</td>
+                <td>{{ problem.name }}</td>
+                <td>{{ problem.description }}</td>
+                <td class="text-center"><form action="{% url 'repair:problem_type_delete' pk=problem.pk %}" method="POST">{% csrf_token %}<a href="{% url 'repair:problem_type_edit' pk=problem.pk %}" class="btn btn-sm btn-warning mr-2">Edit</a><button class="btn btn-sm btn-danger confirm-delete">Delete</button></form></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+        <tfoot>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Image Url</th>
+                <th>Action</th>
+            </tr>
+        </tfoot>
+    </table>
+
+
+
+
+        </div>
+    </div>
+
+{% endblock %}
+
+<script>
+    {% block extra_js %}
+        $(document).ready(function() {
+        $('#example').DataTable();
+    } );
+
+    $(document).on('click', '.confirm-delete', function(){
+        return confirm('Are you sure you want to delete this?');
+    });
+
+    {% endblock %}
+</script>

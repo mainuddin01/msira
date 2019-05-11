@@ -47,22 +47,15 @@ class PhoneDeleteView(PermissionRequiredMixin, DeleteView):
 class ProblemTypeCreateView(PermissionRequiredMixin, CreateView):
     permission_required = "repair.can_add"
     model = ProblemType
-    fields = ('name', "description", "repair_charge")
-
-    def get_success_url(self):
-        phone_pk = self.kwargs.get('pk')
-        return reverse('repair:phone_detail', kwargs={'pk':phone_pk})
-
-    def form_valid(self, form):
-        phone_pk = self.kwargs.get('pk')
-        phone_obj = get_object_or_404(Phone, pk=phone_pk)
-        form = form.save(commit=False)
-        form.phone = phone_obj
-        return super().form_valid(form)
+    fields = ('name', "description")
 
 class ProblemTypeListView(ListView):
     model = ProblemType
     # template_name = "repair/phone_list.html"
+
+class DashboardProblemTypeListView(ListView):
+    model = ProblemType
+    template_name = 'repair/dashboard_problem_type_list.html'
 
 class ProblemTypeDetailView(DetailView):
     model = ProblemType
@@ -71,13 +64,15 @@ class ProblemTypeDetailView(DetailView):
 class ProblemTypeEditView(PermissionRequiredMixin, UpdateView):
     permission_required = "repair.can_edit"
     model = ProblemType
-    fields = ('name', "description", "repair_charge")
+    fields = ('name', "description")
 
 class ProblemTypeDeleteView(PermissionRequiredMixin, DeleteView):
     permission_required = "repair.can_delete"
     model = ProblemType
-    success_url = "repair:home"
+    # success_url = "repair:home"
 
+    def get_success_url(self):
+        return reverse('repair:dashboard_problem_type_list')
 
 class ScheduleView(View):
 

@@ -133,6 +133,21 @@
                 </li>
               {% endif %}
             {% endif %}
+            {% if perms.repair.view_problem_type or perms.repair.add_problem_type %}
+              <li class="nav-title">Problem Type</li>
+              {% if perms.repair.view_problem %}
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'repair:dashboard_problem_type_list' %}">
+                    <i class="nav-icon icon-list"></i> Problem Type List</a>
+                </li>
+              {% endif %}
+              {% if perms.repair.add_problem_type %}
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'repair:add_problem_type' %}">
+                    <i class="nav-icon icon-pencil"></i> Add Problem Type</a>
+                </li>
+              {% endif %}
+            {% endif %}
 {#            {% if perms.cclportal.view_donation or perms.cclportal.add_donation %}#}
 {#              <li class="nav-title">Donations</li>#}
 {#              {% if perms.cclportal.view_donation %}#}
