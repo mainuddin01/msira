@@ -23,6 +23,10 @@ class PhoneCreateView(PermissionRequiredMixin, CreateView):
 class PhoneListView(ListView):
     model = Phone
 
+class DashboardPhoneListView(ListView):
+    model = Phone
+    template_name = 'repair/dashboard_phone_list.html'
+
 class PhoneDetailView(DetailView):
     model = Phone
     template_name = "repair/phone_detail.html"

@@ -16,6 +16,7 @@
     <link href="{% static 'admin_static/vendors/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet">
     <link href="{% static 'admin_static/vendors/simple-line-icons/css/simple-line-icons.css' %}" rel="stylesheet">
     <!-- Main styles for this application-->
+      <link rel="stylesheet" type="text/css" href="{% static 'admin_static/css/dataTables.bootstrap4.min.css' %}"/>
     <link href="{% static 'admin_static/css/style.css' %}" rel="stylesheet">
     <link href="{% static 'admin_static/vendors/pace-progress/css/pace.min.css' %}" rel="stylesheet">
     <!-- Global site tag (gtag.js) - Google Analytics-->
@@ -210,6 +211,9 @@
     <script src="{% static 'admin_static/vendors/pace-progress/js/pace.min.js' %}"></script>
     <script src="{% static 'admin_static/vendors/perfect-scrollbar/js/perfect-scrollbar.min.js' %}"></script>
     <script src="{% static 'admin_static/vendors/@coreui/coreui/js/coreui.min.js' %}"></script>
+    {#    For datatable js#}
+    <script src="{% static 'admin_static/js/jquery.dataTables.min.js' %}"></script>
+    <script src="{% static 'admin_static/js/dataTables.bootstrap4.min.js' %}"></script>
 
     <script>
         {% block extra_js %}{% endblock %}
