@@ -17,7 +17,7 @@ class Phone(models.Model):
 
 
 class ProblemType(models.Model):
-    phone = models.ForeignKey('Phone', on_delete=models.CASCADE)
+    # phone = models.ForeignKey('Phone', on_delete=models.CASCADE)
     name = models.CharField(max_length=50, unique=True)
     # name = models.CharField(max_length=50)
     description = models.TextField(null=True, blank=True)
