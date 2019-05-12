@@ -13,19 +13,15 @@
             <tr>
                 <th>ID</th>
                 <th>Name</th>
-                <th>Image Url</th>
-                <th>Brand</th>
                 <th>Action</th>
             </tr>
         </thead>
         <tbody>
-            {% for phone in object_list %}
+            {% for brand in object_list %}
             <tr>
-                <td>{{ phone.id }}</td>
-                <td>{{ phone.name }}</td>
-                <td>{{ phone.image.url }}</td>
-                <td>{{ phone.brand }}</td>
-                <td class="text-center"><form action="{% url 'repair:phone_delete' pk=phone.pk %}" method="POST">{% csrf_token %}<a href="{% url 'repair:phone_edit' pk=phone.pk %}" class="btn btn-sm btn-warning mr-2">Edit</a><button class="btn btn-sm btn-danger confirm-delete">Delete</button></form></td>
+                <td>{{ brand.id }}</td>
+                <td>{{ brand.name }}</td>
+                <td class="text-center"><form action="{% url 'repair:brand_delete' pk=brand.id %}" method="POST">{% csrf_token %}<a href="{% url 'repair:brand_edit' pk=brand.id %}" class="btn btn-sm btn-warning mr-2">Edit</a><button class="btn btn-sm btn-danger confirm-delete">Delete</button></form></td>
             </tr>
             {% endfor %}
         </tbody>
@@ -33,8 +29,6 @@
             <tr>
                 <th>ID</th>
                 <th>Name</th>
-                <th>Image Url</th>
-                <th>Brand</th>
                 <th>Action</th>
             </tr>
         </tfoot>

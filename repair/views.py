@@ -9,16 +9,46 @@ from django.template import Context
 from django.template.loader import render_to_string, get_template
 from django.core.mail import EmailMessage
 
-from .models import Phone, Problem, PhoneProblem, Repairables
+from .models import Brand, Phone, Problem, PhoneProblem, Repairables
 
 # Create your views here.
 # def home(request, *args, **kwargs):
 #     return render(request, 'repair/phone_list.html')
 
+class BrandCreateView(PermissionRequiredMixin, CreateView):
+    permission_required = "repair.can_add"
+    model = Brand
+    fields = ('name',)
+
+    def get_success_url(self):
+        return reverse('repair:dashboard_brand_list')
+
+
+class DashboardBrandListView(ListView):
+    model = Brand
+    template_name = 'repair/dashboard_brand_list.html'
+
+
+class BrandUpdateView(PermissionRequiredMixin, UpdateView):
+    permission_required = "repair.can_edit"
+    model = Brand
+    fields = ('name',)
+
+    def get_success_url(self):
+        return reverse('repair:dashboard_brand_list')
+
+class BrandDeleteView(PermissionRequiredMixin, DeleteView):
+    permission_required = "repair.can_delete"
+    model = Brand
+
+    def get_success_url(self):
+        return reverse('repair:dashboard_brand_list')
+
+
 class PhoneCreateView(PermissionRequiredMixin, CreateView):
     permission_required = "repair.can_add"
     model = Phone
-    fields = ('name', "image")
+    fields = ('brand', 'name', "image")
 
     def get_success_url(self):
         return reverse('repair:dashboard_phone_list')
@@ -37,7 +67,7 @@ class PhoneDetailView(DetailView):
 class PhoneUpdateView(PermissionRequiredMixin, UpdateView):
     permission_required = "repair.can_edit"
     model = Phone
-    fields = ('name', "image")
+    fields = ('brand', 'name', "image")
 
 class PhoneDeleteView(PermissionRequiredMixin, DeleteView):
     permission_required = "repair.can_delete"

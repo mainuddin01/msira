@@ -118,6 +118,21 @@
       <div class="sidebar">
         <nav class="sidebar-nav">
           <ul class="nav">
+            {% if perms.repair.view_brand or perms.repair.add_brand %}
+              <li class="nav-title">Brand</li>
+              {% if perms.repair.view_brand %}
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'repair:dashboard_brand_list' %}">
+                    <i class="nav-icon icon-list"></i> Brand List</a>
+                </li>
+              {% endif %}
+              {% if perms.repair.add_brand %}
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'repair:add_brand' %}">
+                    <i class="nav-icon icon-pencil"></i> Add Brand</a>
+                </li>
+              {% endif %}
+            {% endif %}
             {% if perms.repair.view_phone or perms.repair.add_phone %}
               <li class="nav-title">Phone</li>
               {% if perms.repair.view_phone %}

@@ -6,9 +6,13 @@ app_name = 'repair'
 
 urlpatterns = [
     path('', views.PhoneListView.as_view(), name='home'),
+    path('dashboard/brands/', views.DashboardBrandListView.as_view(), name='dashboard_brand_list'),
     path('dashboard/phones/', views.DashboardPhoneListView.as_view(), name='dashboard_phone_list'),
     path('dashboard/problem_types/', views.DashboardProblemTypeListView.as_view(), name='dashboard_problem_type_list'),
     path('dashboard/phone_problems/', views.DashboardPhoneProblemListView.as_view(), name='dashboard_phone_problem_list'),
+    path('brand/create/', views.BrandCreateView.as_view(), name='add_brand'),
+    path('brand/<int:pk>/edit/', views.BrandUpdateView.as_view(), name='brand_edit'),
+    path('brand/<int:pk>/delete/', views.BrandDeleteView.as_view(), name='brand_delete'),
     path('phone/create/', views.PhoneCreateView.as_view(), name='add_phone'),
     path('phone/<int:pk>/', views.PhoneDetailView.as_view(), name='phone_detail'),
     path('phone/<int:pk>/edit/', views.PhoneUpdateView.as_view(), name='phone_edit'),
