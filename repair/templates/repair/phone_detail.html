@@ -61,7 +61,7 @@
             {% if request.user.is_superuser %}
                 <hr>
                 <div class="text-right">
-                    <a href="{% url 'repair:problem_type_create' pk=object.pk %}" class="btn btn-success">Add Problem Type</a>
+                    <a href="{% url 'repair:add_problem_type' %}" class="btn btn-success">Add Problem Type</a>
                 </div>
             {% endif %}
 

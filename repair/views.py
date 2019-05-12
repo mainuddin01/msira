@@ -9,7 +9,7 @@ from django.template import Context
 from django.template.loader import render_to_string, get_template
 from django.core.mail import EmailMessage
 
-from .models import Phone, ProblemType, RepairCharge, Repairables
+from .models import Phone, ProblemType, RepairProblem, Repairables
 
 # Create your views here.
 # def home(request, *args, **kwargs):
