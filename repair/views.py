@@ -9,7 +9,7 @@ from django.template import Context
 from django.template.loader import render_to_string, get_template
 from django.core.mail import EmailMessage
 
-from .models import Phone, ProblemType, RepairProblem, Repairables
+from .models import Phone, Problem, PhoneProblem, Repairables
 
 # Create your views here.
 # def home(request, *args, **kwargs):
@@ -19,6 +19,9 @@ class PhoneCreateView(PermissionRequiredMixin, CreateView):
     permission_required = "repair.can_add"
     model = Phone
     fields = ('name', "image")
+
+    def get_success_url(self):
+        return reverse('repair:dashboard_phone_list')
 
 class PhoneListView(ListView):
     model = Phone
@@ -46,29 +49,32 @@ class PhoneDeleteView(PermissionRequiredMixin, DeleteView):
 
 class ProblemTypeCreateView(PermissionRequiredMixin, CreateView):
     permission_required = "repair.can_add"
-    model = ProblemType
+    model = Problem
     fields = ('name', "description")
 
+    def get_success_url(self):
+        return reverse('repair:dashboard_problem_type_list')
+
 class ProblemTypeListView(ListView):
-    model = ProblemType
+    model = Problem
     # template_name = "repair/phone_list.html"
 
 class DashboardProblemTypeListView(ListView):
-    model = ProblemType
+    model = Problem
     template_name = 'repair/dashboard_problem_type_list.html'
 
 class ProblemTypeDetailView(DetailView):
-    model = ProblemType
+    model = Problem
     template_name = "repair/phone_detail.html"
 
 class ProblemTypeEditView(PermissionRequiredMixin, UpdateView):
     permission_required = "repair.can_edit"
-    model = ProblemType
+    model = Problem
     fields = ('name', "description")
 
 class ProblemTypeDeleteView(PermissionRequiredMixin, DeleteView):
     permission_required = "repair.can_delete"
-    model = ProblemType
+    model = Problem
     # success_url = "repair:home"
 
     def get_success_url(self):
@@ -95,7 +101,7 @@ class ScheduleView(View):
         #           'A new user has claimed a schedule for his phone repair. {}'.format(request.get_host()),
         #           '95mainuddin@gmail.com', ['saifulbsl55@gmail.com', ], fail_silently=False)
 
-        problem_type = get_object_or_404(ProblemType, id=problem)
+        problem_type = get_object_or_404(Problem, id=problem)
 
         subject = "New Ticket From Digicompute"
         to = ['saifulbsl55@gmail.com']
@@ -120,5 +126,9 @@ class ScheduleView(View):
 #         return HttpResponseRedirect(reverse('repair:home'))
 #     else:
 #         return HttpResponseRedirect
+
+
+
+
 
 
