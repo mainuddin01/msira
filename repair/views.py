@@ -129,6 +129,17 @@ class ScheduleView(View):
 
 
 
+class PhoneProblemCreateView(PermissionRequiredMixin, CreateView):
+    permission_required = 'repair.add_phone_problem'
+    model = PhoneProblem
+    fields = ['phone', 'problem', 'charge']
 
+    def get_success_url(self):
+        return reverse('repair:dashboard_phone_problem_list')
+
+
+class DashboardPhoneProblemListView(ListView):
+    model = PhoneProblem
+    template_name = 'repair/dashboard_phone_problem_list.html'
 
 

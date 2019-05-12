@@ -1,0 +1,47 @@
+{% extends 'admin_base.html' %}
+
+{% load widget_tweaks %}
+
+{% block content %}
+
+      <div class="row justify-content-center">
+        <div class="col-md-8">
+          <div class="card mx-4 mt-4">
+            <div class="card-body p-4">
+              <h1 class="pb-4 text-center">{% if form.instance.id %}Update{% else %}Create{% endif %} Phone Problem</h1>
+            <form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+
+                        <div class="form-group">
+                            <label for="{{ form.phone.id_for_label }}">{{ form.phone.label }}</label>
+                            {% render_field form.phone class="form-control" %}
+                            {% for error in form.phone.errors %}
+                                {{ error }}
+                            {% endfor %}
+                        </div>
+
+                        <div class="form-group">
+                            <label for="{{ form.problem.id_for_label }}">{{ form.problem.label }}</label>
+                            {% render_field form.problem class="form-control" %}
+                            {% for error in form.problem.errors %}
+                                {{ error }}
+                            {% endfor %}
+                        </div>
+
+                        <div class="form-group">
+                            <label for="{{ form.charge.id_for_label }}">{{ form.charge.label }}</label>
+                            {% render_field form.charge class="form-control" %}
+                            {% for error in form.charge.errors %}
+                                {{ error }}
+                            {% endfor %}
+                        </div>
+
+                <div class="text-right"><br>
+                    <button class="btn btn-success btn-lg" type="submit">Save</button>
+                </div>
+            </form>
+            </div>
+          </div>
+        </div>
+      </div>
+{% endblock %}

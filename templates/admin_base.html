@@ -148,6 +148,21 @@
                 </li>
               {% endif %}
             {% endif %}
+            {% if perms.repair.view_phoneproblem or perms.repair.add_phoneproblem %}
+              <li class="nav-title">Phone Problem</li>
+              {% if perms.repair.view_phoneproblem %}
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'repair:dashboard_phone_problem_list' %}">
+                    <i class="nav-icon icon-list"></i> Phone Problem List</a>
+                </li>
+              {% endif %}
+              {% if perms.repair.add_phoneproblem %}
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'repair:add_phone_problem' %}">
+                    <i class="nav-icon icon-pencil"></i> Add Phone Problem</a>
+                </li>
+              {% endif %}
+            {% endif %}
 {#            {% if perms.cclportal.view_donation or perms.cclportal.add_donation %}#}
 {#              <li class="nav-title">Donations</li>#}
 {#              {% if perms.cclportal.view_donation %}#}

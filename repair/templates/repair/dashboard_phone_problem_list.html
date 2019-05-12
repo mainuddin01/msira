@@ -1,0 +1,62 @@
+{% extends 'admin_base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+    <div class="card mt-4">
+        <div class="card-body">
+
+
+            <table id="example" class="table table-striped table-bordered" style="width:100%">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Phone</th>
+                <th>Problem</th>
+                <th>Charge</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for phone_problem in object_list %}
+            <tr>
+                <td>{{ phone_problem.id }}</td>
+                <td>{{ phone_problem.phone }}</td>
+                <td>{{ phone_problem.problem }}</td>
+                <td>{{ phone_problem.charge }}</td>
+                <td class="text-center"><form action="" method="POST">{% csrf_token %}<a href="" class="btn btn-sm btn-warning mr-2">Edit</a><button class="btn btn-sm btn-danger confirm-delete">Delete</button></form></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+        <tfoot>
+            <tr>
+                <th>ID</th>
+                <th>Phone</th>
+                <th>Problem</th>
+                <th>Charge</th>
+                <th>Action</th>
+            </tr>
+        </tfoot>
+    </table>
+
+
+
+
+        </div>
+    </div>
+
+{% endblock %}
+
+<script>
+    {% block extra_js %}
+        $(document).ready(function() {
+        $('#example').DataTable();
+    } );
+
+    $(document).on('click', '.confirm-delete', function(){
+        return confirm('Are you sure you want to delete this?');
+    });
+
+    {% endblock %}
+</script>

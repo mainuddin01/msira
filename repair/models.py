@@ -33,11 +33,11 @@ class Problem(models.Model):
 
 class PhoneProblem(models.Model):
     phone = models.ForeignKey('Phone', on_delete=models.CASCADE)
-    problem_type = models.ForeignKey('Problem', on_delete=models.CASCADE)
+    problem = models.ForeignKey('Problem', on_delete=models.CASCADE)
     charge = models.DecimalField(max_digits=10, decimal_places=2)
 
     def __str__(self):
-        return f"{self.phone.name} - {self.problem_type.name}"
+        return f"{self.phone.name} - {self.problem.name}"
 
 
 class Repairables(models.Model):

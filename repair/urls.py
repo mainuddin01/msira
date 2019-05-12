@@ -8,6 +8,7 @@ urlpatterns = [
     path('', views.PhoneListView.as_view(), name='home'),
     path('dashboard/phones/', views.DashboardPhoneListView.as_view(), name='dashboard_phone_list'),
     path('dashboard/problem_types/', views.DashboardProblemTypeListView.as_view(), name='dashboard_problem_type_list'),
+    path('dashboard/phone_problems/', views.DashboardPhoneProblemListView.as_view(), name='dashboard_phone_problem_list'),
     path('phone/create/', views.PhoneCreateView.as_view(), name='add_phone'),
     path('phone/<int:pk>/', views.PhoneDetailView.as_view(), name='phone_detail'),
     path('phone/<int:pk>/edit/', views.PhoneUpdateView.as_view(), name='phone_edit'),
@@ -18,4 +19,5 @@ urlpatterns = [
     path('problem_type/<int:pk>/edit/', views.ProblemTypeEditView.as_view(), name='problem_type_edit'),
     path('problem_type/<int:pk>/delete/', views.ProblemTypeDeleteView.as_view(), name='problem_type_delete'),
     path('schedule/<int:pk>/', views.ScheduleView.as_view(), name='schedule'),
+    path('phone_problem/create/', views.PhoneProblemCreateView.as_view(), name='add_phone_problem'),
 ]
