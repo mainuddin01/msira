@@ -9,7 +9,7 @@ from django.template import Context
 from django.template.loader import render_to_string, get_template
 from django.core.mail import EmailMessage
 
-from .models import Brand, Phone, Problem, PhoneProblem, Repairables
+from .models import Brand, Phone, Problem, PhoneProblem, Repairables, Color
 
 # Create your views here.
 # def home(request, *args, **kwargs):
@@ -171,5 +171,35 @@ class PhoneProblemCreateView(PermissionRequiredMixin, CreateView):
 class DashboardPhoneProblemListView(ListView):
     model = PhoneProblem
     template_name = 'repair/dashboard_phone_problem_list.html'
+
+
+class ColorCreateView(PermissionRequiredMixin, CreateView):
+    permission_required = "repair.can_add"
+    model = Color
+    fields = ('color',)
+
+    def get_success_url(self):
+        return reverse('repair:dashboard_color_list')
+
+
+class DashboardColorListView(ListView):
+    model = Color
+    template_name = 'repair/dashboard_color_list.html'
+
+
+class ColorUpdateView(PermissionRequiredMixin, UpdateView):
+    permission_required = "repair.can_edit"
+    model = Color
+    fields = ('color',)
+
+    def get_success_url(self):
+        return reverse('repair:dashboard_color_list')
+
+class ColorDeleteView(PermissionRequiredMixin, DeleteView):
+    permission_required = "repair.can_delete"
+    model = Color
+
+    def get_success_url(self):
+        return reverse('repair:dashboard_color_list')
 
 

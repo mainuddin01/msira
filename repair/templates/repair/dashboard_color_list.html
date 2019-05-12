@@ -1,0 +1,56 @@
+{% extends 'admin_base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+    <div class="card mt-4">
+        <div class="card-body">
+
+
+            <table id="example" class="table table-striped table-bordered" style="width:100%">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Color</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for color in object_list %}
+            <tr>
+                <td>{{ color.id }}</td>
+                <td>{{ color.color }}</td>
+                <td class="text-center"><form action="{% url 'repair:color_delete' pk=color.id %}" method="POST">{% csrf_token %}<a href="{% url 'repair:color_edit' pk=color.id %}" class="btn btn-sm btn-warning mr-2">Edit</a><button class="btn btn-sm btn-danger confirm-delete">Delete</button></form></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+        <tfoot>
+            <tr>
+                <th>ID</th>
+                <th>Color</th>
+                <th>Action</th>
+            </tr>
+        </tfoot>
+    </table>
+
+
+
+
+        </div>
+    </div>
+
+{% endblock %}
+
+<script>
+    {% block extra_js %}
+        $(document).ready(function() {
+        $('#example').DataTable();
+    } );
+
+    $(document).on('click', '.confirm-delete', function(){
+        return confirm('Are you sure you want to delete this?');
+    });
+
+    {% endblock %}
+</script>

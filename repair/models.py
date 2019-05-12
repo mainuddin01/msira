@@ -56,3 +56,10 @@ class Repairables(models.Model):
 
     def __str__(self):
         return self.id
+
+
+class Color(models.Model):
+    color = models.CharField(max_length=200, unique=True)
+
+    def __str__(self):
+        return self.color

@@ -1,0 +1,29 @@
+{% extends 'admin_base.html' %}
+
+{% load widget_tweaks %}
+
+{% block content %}
+
+      <div class="row justify-content-center">
+        <div class="col-md-8">
+          <div class="card mx-4 mt-4">
+            <div class="card-body p-4">
+              <h1 class="pb-4 text-center">{% if form.instance.id %}Update{% else %}Create{% endif %} Color</h1>
+            <form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+
+                    <div class="form-group">
+                        <label for="{{ form.color.id_for_label }}">{{ form.color.label }}</label>
+                        {% render_field form.color class="form-control" %}
+                        {% for error in form.color.errors %}
+                            <span class="help-block">{{ error }}</span>
+                        {% endfor %}
+                    </div>
+
+                    <button class="btn btn-block btn-success" type="submit">Save</button>
+            </form>
+            </div>
+          </div>
+        </div>
+      </div>
+{% endblock %}
